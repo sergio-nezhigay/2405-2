@@ -1,0 +1,29 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "2d6c7d2f1c293941a5053e43fd1f632b"
+name = "2405-2"
+handle = "2405-2"
+application_url = "https://baltimore-steven-blogger-slope.trycloudflare.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "codeinspire2.myshopify.com"
+include_config_on_deploy = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products"
+
+[auth]
+redirect_urls = [
+  "https://baltimore-steven-blogger-slope.trycloudflare.com/auth/callback",
+  "https://baltimore-steven-blogger-slope.trycloudflare.com/auth/shopify/callback",
+  "https://baltimore-steven-blogger-slope.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-04"
+
+[pos]
+embedded = false
