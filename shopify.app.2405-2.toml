@@ -3,7 +3,7 @@
 client_id = "2d6c7d2f1c293941a5053e43fd1f632b"
 name = "2405-2"
 handle = "2405-2"
-application_url = "https://tobago-ambassador-resorts-annoying.trycloudflare.com"
+application_url = "https://comments-indicating-facing-issue.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,18 +17,18 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://tobago-ambassador-resorts-annoying.trycloudflare.com/auth/callback",
-  "https://tobago-ambassador-resorts-annoying.trycloudflare.com/auth/shopify/callback",
-  "https://tobago-ambassador-resorts-annoying.trycloudflare.com/api/auth/callback"
+  "https://comments-indicating-facing-issue.trycloudflare.com/auth/callback",
+  "https://comments-indicating-facing-issue.trycloudflare.com/auth/shopify/callback",
+  "https://comments-indicating-facing-issue.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
 api_version = "2024-04"
 
   [webhooks.privacy_compliance]
-  customer_deletion_url = "https://upload-attractive-hansen-tales.trycloudflare.com/webhooks"
-  customer_data_request_url = "https://upload-attractive-hansen-tales.trycloudflare.com/webhooks"
-  shop_deletion_url = "https://upload-attractive-hansen-tales.trycloudflare.com/webhooks"
+  customer_deletion_url = "https://thank-stations-adopt-trauma.trycloudflare.com/api/webhooks"
+  customer_data_request_url = "https://thank-stations-adopt-trauma.trycloudflare.com/api/webhooks"
+  shop_deletion_url = "https://thank-stations-adopt-trauma.trycloudflare.com/api/webhooks"
 
 [pos]
-embedded = false
+embedded = true

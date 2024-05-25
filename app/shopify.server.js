@@ -28,10 +28,7 @@ const shopify = shopifyApp({
       deliveryMethod: DeliveryMethod.Http,
       callbackUrl: "/webhooks",
     },
-    PRODUCTS_DELETE: {
-      deliveryMethod: DeliveryMethod.Http,
-      callbackUrl: "/webhooks",
-    },
+
     CUSTOMERS_REDACT: {
       deliveryMethod: DeliveryMethod.Http,
       callbackUrl: "/webhooks",

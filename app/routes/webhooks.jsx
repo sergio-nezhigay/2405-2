@@ -45,15 +45,9 @@ export const action = async ({ request }) => {
       if (session) {
         await db.session.deleteMany({ where: { shop } });
       }
-
       break;
     case "PRODUCTS_UPDATE":
       console.log("Product was updated");
-
-      break;
-    case "PRODUCTS_DELETE":
-      console.log("Product was deleted");
-
       break;
     case "CUSTOMERS_DATA_REQUEST":
       console.log("CUSTOMERS_DATA_REQUEST event");
@@ -66,7 +60,7 @@ export const action = async ({ request }) => {
       break;
     default:
       console.log("Unhandled Webhook Topic:", topic);
-      throw new Response("Unhandled webhook topic", { status: 404 });
+      break;
   }
 
   return json({ success: true });
