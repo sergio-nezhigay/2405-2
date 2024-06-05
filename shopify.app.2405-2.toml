@@ -3,7 +3,7 @@
 client_id = "2d6c7d2f1c293941a5053e43fd1f632b"
 name = "2405-2"
 handle = "2405-2"
-application_url = "https://comments-indicating-facing-issue.trycloudflare.com"
+application_url = "https://douglas-charge-casio-mirrors.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://comments-indicating-facing-issue.trycloudflare.com/auth/callback",
-  "https://comments-indicating-facing-issue.trycloudflare.com/auth/shopify/callback",
-  "https://comments-indicating-facing-issue.trycloudflare.com/api/auth/callback"
+  "https://douglas-charge-casio-mirrors.trycloudflare.com/auth/callback",
+  "https://douglas-charge-casio-mirrors.trycloudflare.com/auth/shopify/callback",
+  "https://douglas-charge-casio-mirrors.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

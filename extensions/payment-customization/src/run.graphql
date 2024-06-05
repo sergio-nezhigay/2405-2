@@ -1,0 +1,41 @@
+query RunInput {
+  cart {
+    cost {
+      totalAmount {
+        amount
+      }
+    }
+    lines {
+      id
+      merchandise {
+        ... on ProductVariant {
+          id
+          title
+          product {
+            metafield(namespace: "custom", key: "payment_name") {
+              value
+            }
+          }
+        }
+      }
+      quantity
+      cost {
+        totalAmount {
+          amount
+        }
+      }
+    }
+  }
+  paymentMethods {
+    id
+    name
+  }
+  paymentCustomization {
+    metafield(
+      namespace: "$app:payment-customization"
+      key: "function-configuration"
+    ) {
+      value
+    }
+  }
+}
