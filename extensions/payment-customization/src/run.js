@@ -29,7 +29,7 @@ export function run(input) {
   );
   console.log("🚀 ~ supplier:", supplier.name);
   console.error("🚀 ~ supplier:", supplier.name);
-  shopify.toast.show("Message sent===========");
+
   if (!supplier.name) {
     return NO_CHANGES;
   }
