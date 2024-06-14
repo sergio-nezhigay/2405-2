@@ -3,7 +3,7 @@
 client_id = "2d6c7d2f1c293941a5053e43fd1f632b"
 name = "2405-2"
 handle = "2405-2"
-application_url = "https://internationally-centers-mortality-presentations.trycloudflare.com"
+application_url = "https://housewives-lookup-depot-armed.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://internationally-centers-mortality-presentations.trycloudflare.com/auth/callback",
-  "https://internationally-centers-mortality-presentations.trycloudflare.com/auth/shopify/callback",
-  "https://internationally-centers-mortality-presentations.trycloudflare.com/api/auth/callback"
+  "https://housewives-lookup-depot-armed.trycloudflare.com/auth/callback",
+  "https://housewives-lookup-depot-armed.trycloudflare.com/auth/shopify/callback",
+  "https://housewives-lookup-depot-armed.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
