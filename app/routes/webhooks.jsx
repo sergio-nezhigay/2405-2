@@ -1,67 +1,64 @@
-import { authenticate } from "../shopify.server";
-import db from "../db.server";
-import { json } from "@remix-run/node";
 import crypto from "crypto";
-//const SHOPIFY_API_SECRET = process.env.SHOPIFY_API_SECRET;
+import { Buffer } from "buffer";
 
 export const action = async ({ request }) => {
-  console.log("🚀 ~ action:");
+  console.log("Webhook request received");
+  try {
+    const requestBody = await request.json();
+    const req = JSON.parse(requestBody.body);
 
-  // Step 1: Clone the request and extract the raw payload
-  const reqClone = request.clone();
-  const rawPayload = await reqClone.text();
-  console.log("🚀 ~ rawPayload:", rawPayload);
+    const metadata = req.detail.metadata;
+    const payload = req.detail.payload;
 
-  // Step 2: Extract the HMAC signature from the request headers
-  const hmacHeader = request.headers.get("X-Shopify-Hmac-Sha256");
+    const hmac = metadata["X-Shopify-Hmac-SHA256"];
 
-  // Step 3: Compute the HMAC signature
-  const generatedHash = crypto
-    .createHmac("sha256", process.env.SHOPIFY_API_SECRET)
-    .update(rawPayload, "utf8")
-    .digest("base64");
-  console.log(
-    "🚀 ~ process.env.SHOPIFY_API_SECRET:",
-    process.env.SHOPIFY_API_SECRET,
-  );
-  console.log("🚀 ~ generatedHash:", generatedHash);
-  console.log("🚀 ~ hmacHeader:", hmacHeader);
-  // Step 4: Compare the computed signature with the one provided by Shopify
-  if (generatedHash !== hmacHeader) {
-    console.log("HMAC validation failed");
-    return new Response("Invalid HMAC signature", { status: 401 });
-  }
+    // Converting JSON to string
+    const jsonString = JSON.stringify(payload);
 
-  const { topic, shop, session, admin } = await authenticate.webhook(request);
-  console.log("🚀 ~ topic, shop:", topic, shop);
+    // Creating a buffer from the JSON string
+    const buffer = Buffer.from(jsonString);
 
-  if (!admin) {
-    throw new Response();
-  }
+    const genHash = crypto
+      .createHmac("sha256", process.env.SHOPIFY_API_SECRET)
+      .update(buffer, "utf8", "hex")
+      .digest("base64");
 
-  switch (topic) {
-    case "APP_UNINSTALLED":
-      console.log(" case APP_UNINSTALLED");
-      if (session) {
-        await db.session.deleteMany({ where: { shop } });
+    if (genHash !== hmac) {
+      // return new Response("Couldn't verify incoming Webhook request!", {
+      //   status: 401,
+      // });
+    }
+
+    if (metadata["X-Shopify-Shop-Domain"]) {
+      try {
+        const shopData = await db.session.deleteMany({
+          where: {
+            shop: metadata["X-Shopify-Shop-Domain"],
+          },
+          select: {
+            access_token: true,
+          },
+        });
+
+        let topic;
+        if (metadata["X-Shopify-Topic"] === "shop/update") {
+          topic = "SHOP_UPDATE";
+        } else if (metadata["X-Shopify-Topic"] === "products/create") {
+          topic = "PRODUCTS_CREATE";
+        } else if (metadata["X-Shopify-Topic"] === "products/update") {
+          topic = "PRODUCTS_UPDATE";
+        } else if (metadata["X-Shopify-Topic"] === "products/delete") {
+          topic = "PRODUCTS_DELETE";
+        }
+
+        
+      } catch (error) {
+        console.log("Error while getting shop data in custom webhook", error);
       }
-      break;
-    case "PRODUCTS_UPDATE":
-      console.log("Product was updated");
-      break;
-    case "CUSTOMERS_DATA_REQUEST":
-      console.log("CUSTOMERS_DATA_REQUEST event");
-      break;
-    case "CUSTOMERS_REDACT":
-      console.log("CUSTOMERS_REDACT event");
-      break;
-    case "SHOP_REDACT":
-      console.log("SHOP_REDACT event");
-      break;
-    default:
-      console.log("Unhandled Webhook Topic:", topic);
-      break;
+    }
+  } catch (error) {
+    console.log("Error while processing custom webhook", error);
   }
 
-  return json({ success: true });
+  return new Response("Success", { status: 200 });
 };
