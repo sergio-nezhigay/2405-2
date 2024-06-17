@@ -3,7 +3,7 @@
 client_id = "2d6c7d2f1c293941a5053e43fd1f632b"
 name = "2405-2"
 handle = "2405-2"
-application_url = "https://internationally-centers-mortality-presentations.trycloudflare.com"
+application_url = "https://businesses-tie-te-textile.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,18 +17,18 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://internationally-centers-mortality-presentations.trycloudflare.com/auth/callback",
-  "https://internationally-centers-mortality-presentations.trycloudflare.com/auth/shopify/callback",
-  "https://internationally-centers-mortality-presentations.trycloudflare.com/api/auth/callback"
+  "https://businesses-tie-te-textile.trycloudflare.com/auth/callback",
+  "https://businesses-tie-te-textile.trycloudflare.com/auth/shopify/callback",
+  "https://businesses-tie-te-textile.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
 api_version = "2024-04"
 
   [webhooks.privacy_compliance]
-  customer_deletion_url = "https://thank-stations-adopt-trauma.trycloudflare.com/api/webhooks"
-  customer_data_request_url = "https://thank-stations-adopt-trauma.trycloudflare.com/api/webhooks"
-  shop_deletion_url = "https://thank-stations-adopt-trauma.trycloudflare.com/api/webhooks"
+  customer_deletion_url = "https://our-cinema-normally-compute.trycloudflare.com/gdpr"
+  customer_data_request_url = "https://our-cinema-normally-compute.trycloudflare.com/gdpr"
+  shop_deletion_url = "https://our-cinema-normally-compute.trycloudflare.com/gdpr"
 
 [pos]
 embedded = true
