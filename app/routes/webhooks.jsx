@@ -1,64 +1,30 @@
-import crypto from "crypto";
-import { Buffer } from "buffer";
+import { authenticate } from "../shopify.server";
+import db from "../db.server";
+import { json } from "@remix-run/node";
 
 export const action = async ({ request }) => {
-  console.log("Webhook request received");
-  try {
-    const requestBody = await request.json();
-    const req = JSON.parse(requestBody.body);
+  console.log("🚀 ~webhooks action:");
+  const { topic, shop, session, admin } = await authenticate.webhook(request);
 
-    const metadata = req.detail.metadata;
-    const payload = req.detail.payload;
-
-    const hmac = metadata["X-Shopify-Hmac-SHA256"];
-
-    // Converting JSON to string
-    const jsonString = JSON.stringify(payload);
-
-    // Creating a buffer from the JSON string
-    const buffer = Buffer.from(jsonString);
-
-    const genHash = crypto
-      .createHmac("sha256", process.env.SHOPIFY_API_SECRET)
-      .update(buffer, "utf8", "hex")
-      .digest("base64");
-
-    if (genHash !== hmac) {
-      // return new Response("Couldn't verify incoming Webhook request!", {
-      //   status: 401,
-      // });
-    }
-
-    if (metadata["X-Shopify-Shop-Domain"]) {
-      try {
-        const shopData = await db.session.deleteMany({
-          where: {
-            shop: metadata["X-Shopify-Shop-Domain"],
-          },
-          select: {
-            access_token: true,
-          },
-        });
-
-        let topic;
-        if (metadata["X-Shopify-Topic"] === "shop/update") {
-          topic = "SHOP_UPDATE";
-        } else if (metadata["X-Shopify-Topic"] === "products/create") {
-          topic = "PRODUCTS_CREATE";
-        } else if (metadata["X-Shopify-Topic"] === "products/update") {
-          topic = "PRODUCTS_UPDATE";
-        } else if (metadata["X-Shopify-Topic"] === "products/delete") {
-          topic = "PRODUCTS_DELETE";
-        }
-
-        
-      } catch (error) {
-        console.log("Error while getting shop data in custom webhook", error);
-      }
-    }
-  } catch (error) {
-    console.log("Error while processing custom webhook", error);
+  if (!admin) {
+    throw new Response();
   }
 
-  return new Response("Success", { status: 200 });
+  switch (topic) {
+    case "APP_UNINSTALLED":
+      console.log(" case APP_UNINSTALLED");
+      if (session) {
+        await db.session.deleteMany({ where: { shop } });
+      }
+      break;
+    case "PRODUCTS_UPDATE":
+      console.log(" case PRODUCTS_UPDATE");
+      break;
+
+    default:
+      console.log("Unhandled Webhook Topic:", topic);
+      break;
+  }
+
+  return json({ success: true });
 };
