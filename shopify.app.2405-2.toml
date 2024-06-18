@@ -3,7 +3,7 @@
 client_id = "2d6c7d2f1c293941a5053e43fd1f632b"
 name = "2405-2"
 handle = "2405-2"
-application_url = "https://grounds-blocks-stage-gross.trycloudflare.com"
+application_url = "https://materials-webpage-object-trackback.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,18 +17,18 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://grounds-blocks-stage-gross.trycloudflare.com/auth/callback",
-  "https://grounds-blocks-stage-gross.trycloudflare.com/auth/shopify/callback",
-  "https://grounds-blocks-stage-gross.trycloudflare.com/api/auth/callback"
+  "https://materials-webpage-object-trackback.trycloudflare.com/auth/callback",
+  "https://materials-webpage-object-trackback.trycloudflare.com/auth/shopify/callback",
+  "https://materials-webpage-object-trackback.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
 api_version = "2024-04"
 
   [webhooks.privacy_compliance]
-  customer_deletion_url = "https://numeric-painful-postings-capable.trycloudflare.com/webhooks"
-  customer_data_request_url = "https://numeric-painful-postings-capable.trycloudflare.com/webhooks"
-  shop_deletion_url = "https://numeric-painful-postings-capable.trycloudflare.com/webhooks"
+  customer_deletion_url = "https://inserted-common-propecia-janet.trycloudflare.com1/webhooks"
+  customer_data_request_url = "https://inserted-common-propecia-janet.trycloudflare.com1/webhooks"
+  shop_deletion_url = "https://inserted-common-propecia-janet.trycloudflare.com1/webhooks"
 
 [pos]
 embedded = true

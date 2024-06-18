@@ -27,8 +27,8 @@ export function run(input) {
     },
     { name: "", cost: 0 },
   );
-  console.log("🚀 ~ supplier:", supplier.name);
-  console.error("🚀 ~ supplier:", supplier.name);
+  console.log("🚀 ~ supplier1:", supplier.name);
+  console.error("🚀 ~ supplier1:", supplier.name);
 
   if (!supplier.name) {
     return NO_CHANGES;

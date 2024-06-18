@@ -2,12 +2,14 @@ import crypto from "crypto";
 import { json } from "@remix-run/node";
 
 export const action = async ({ request }) => {
-  console.log("Webhook request received");
+  console.log("Webhook request received=============");
   try {
     const rawBody = await request.text(); // Get the raw request body
-    const payload = JSON.parse(rawBody); // Parse the JSON payload
+    //const payload = JSON.parse(rawBody); // Parse the JSON payload
 
     const hmacHeader = request.headers.get("X-Shopify-Hmac-Sha256");
+    //const secret = process.env.SHOPIFY_API_SECRET;
+
     const secret = "ee9557fb0df617cd2a6f02231feec7a6"; // Replace with your actual client secret
 
     // Generate the HMAC signature using the raw request body
@@ -38,9 +40,9 @@ export const action = async ({ request }) => {
     switch (topic) {
       case "APP_UNINSTALLED":
         console.log("case APP_UNINSTALLED");
-        if (session) {
-          await db.session.deleteMany({ where: { shop } });
-        }
+        //if (session) {
+        //  await db.session.deleteMany({ where: { shop } });
+        //}
         break;
       case "PRODUCTS_UPDATE":
         console.log("case PRODUCTS_UPDATE");
@@ -51,7 +53,6 @@ export const action = async ({ request }) => {
       default:
         console.log("Unhandled Webhook Topic:", topic);
     }
-
   } catch (error) {
     console.log("Error while processing custom webhook", error);
     return new Response("Error", { status: 500 });
