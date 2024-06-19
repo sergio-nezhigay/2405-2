@@ -43,7 +43,8 @@ export const action = async ({ request }) => {
         }
         break;
       case "PRODUCTS_UPDATE":
-        console.log("case PRODUCTS_UPDATE");
+      case "products/update":
+        console.log("case ====> dsdsd PRODUCTS_UPDATE");
         break;
       case "CUSTOMERS_DATA_REQUEST":
       case "CUSTOMERS_REDACT":
