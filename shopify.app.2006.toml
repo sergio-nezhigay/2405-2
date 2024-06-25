@@ -1,0 +1,33 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "16a66febea5894ddafe461d6813ab80e"
+name = "2006"
+handle = "2006"
+application_url = "https://libs-gazette-vessels-cartoon.trycloudflare.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "codeinspire2.myshopify.com"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = ""
+
+[auth]
+redirect_urls = [
+  "https://libs-gazette-vessels-cartoon.trycloudflare.com/auth/callback",
+  "https://libs-gazette-vessels-cartoon.trycloudflare.com/auth/shopify/callback",
+  "https://libs-gazette-vessels-cartoon.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-04"
+
+  [webhooks.privacy_compliance]
+  customer_deletion_url = "https://uruguay-apps-ethics-he.trycloudflare.com/webhooks"
+  customer_data_request_url = "https://uruguay-apps-ethics-he.trycloudflare.com/webhooks"
+  shop_deletion_url = "https://uruguay-apps-ethics-he.trycloudflare.com/webhooks"
+
+[pos]
+embedded = false

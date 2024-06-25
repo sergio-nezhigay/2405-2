@@ -1,0 +1,29 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "94394d730ff4b4a1b03c40d118779f45"
+name = "test app by jash"
+handle = "test-app-by-jash"
+application_url = "https://attract-saying-pregnant-company.trycloudflare.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "codeinspire2.myshopify.com"
+include_config_on_deploy = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = ""
+
+[auth]
+redirect_urls = [
+  "https://attract-saying-pregnant-company.trycloudflare.com/auth/callback",
+  "https://attract-saying-pregnant-company.trycloudflare.com/auth/shopify/callback",
+  "https://attract-saying-pregnant-company.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-04"
+
+[pos]
+embedded = false

@@ -8,7 +8,7 @@ export const action = async ({ request }) => {
     const payload = JSON.parse(rawBody); // Parse the JSON payload
 
     const hmacHeader = request.headers.get("X-Shopify-Hmac-Sha256");
-    const secret = "ee9557fb0df617cd2a6f02231feec7a6"; // Replace with your actual client secret
+    const secret = process.env.SHOPIFY_API_SECRET; // Replace with your actual client secret
 
     // Generate the HMAC signature using the raw request body
     const generatedHmac = crypto

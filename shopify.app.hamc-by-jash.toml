@@ -1,0 +1,29 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "23f34b228d6f815320d98f2a0a2b999e"
+name = "hamc by jash"
+handle = "hamc-by-jash"
+application_url = "https://agencies-club-keno-glenn.trycloudflare.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "codeinspire2.myshopify.com"
+include_config_on_deploy = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = ""
+
+[auth]
+redirect_urls = [
+  "https://agencies-club-keno-glenn.trycloudflare.com/auth/callback",
+  "https://agencies-club-keno-glenn.trycloudflare.com/auth/shopify/callback",
+  "https://agencies-club-keno-glenn.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-04"
+
+[pos]
+embedded = false
